@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2e7d32, #1b5e20);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .masterContainer {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #graphicImage {
+            
+            
+    width: 120px; /* Set width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensures proper positioning */
+    margin: 0 auto; /* Centers horizontally */
+    border-radius: 10px; /* Optional: rounded corners for aesthetics */
+}
+
+        
+        .boxItems {
+            margin: 12px 0;
+        }
+        input {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+        }
+        input::placeholder {
+            color: #a5d6a7;
+        }
+        input:focus {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        button, input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            outline: none;
+        }
+        button:hover, input[type="submit"]:hover {
+            background: #2e7d32;
+        }
+        a {
+            color: #c5e1a5;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="masterContainer">
+            <div id="loginbox">
+                <div class="boxArea" id="graphic">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbE3pQHa3prqZoi-bF1qdI3lz5A2Pi_A9LlQ&s" alt="" id="graphicImage">
+                    <p>It's great to see you again!</p>
+                </div>
+                <div class="boxArea" id="LoginArea">
+                    <form id="loginForm">
+                        <div class="boxItems">
+                            <img src="./Graphic designing/logo_small.png" alt="">
+                        </div>
+                        <div class="boxItems">
+                            <p>Welcome Back</p>
+                        </div>
+                        <div class="boxItems inputs">
+                            <label for="username">Username</label>       
+                            <input type="text" id="username" placeholder="Enter your username" required>
+                        </div>
+                        <div class="boxItems inputs">
+                            <label for="pword">Password</label>  
+                            <input type="password" id="pword" placeholder="Enter your password" required>
+                        </div>
+                        <div class="boxItems">                            
+                            <input type="submit" value="SIGN IN" id="submitButton">      
+                        </div>
+                        <div class="boxItems" id="log-on">
+                            <p>New to Fortunez? <a href="./signup.html">Create an Account</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let form = document.getElementById("loginForm");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("pword").value;
+            let storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+            let userFound = storedUsers.find(
+                (user) => user.username === username && user.password === password
+            );
+            if (userFound) {
+                alert(`Login successful! Welcome back, ${userFound.username}`);
+                window.location.href = "index.html";
+            } else {
+                alert("Login failed! Invalid username or password.");
+            }
+        });
+    </script>
+</body>
+</html>
